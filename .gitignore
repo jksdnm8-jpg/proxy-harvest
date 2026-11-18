@@ -1,0 +1,30 @@
+# 运行时数据（不应入库）
+history/
+backups/
+config/
+.harvest-tmp/
+harvest.log
+*.log
+result.json
+
+# 用户本地配置（可能含本机路径与 secret）
+config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 归档产物
+*.gz
+*.tgz
+*.zip
