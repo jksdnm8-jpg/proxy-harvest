@@ -1,6 +1,6 @@
 # Proxy Harvest
 
-`v0.0.2` · 代理订阅抓取、测速与 mihomo 配置落地工具。
+`v0.0.3` · 代理订阅抓取、测速与 mihomo 配置落地工具。
 
 从订阅源抓取节点，用临时 mihomo 实例测速并记录结果；需要时生成分组订阅，或写入 mihomo 配置。
 默认只读，只有显式 `--apply` / `--cron` 才会改动配置。
@@ -201,7 +201,7 @@ python compat_matrix.py --mihomo mock_mihomo.py --only ss,vless --json-out compa
 矩阵用例：`ss` / `vmess` / `vless` / `trojan` / `hysteria2` / `tuic` / `anytls` /
 `dns-fake-ip` / `groups` / `listeners`。CI 使用 mock 内核生成 `compat.json`；真实内核矩阵可在本机用
 `compat_matrix.py` 生成，不随仓库提交。本机验证记录见
-[VALIDATION-v0.0.2.md](VALIDATION-v0.0.2.md)。
+[VALIDATION-v0.0.3.md](VALIDATION-v0.0.3.md)。
 
 ## 配置
 

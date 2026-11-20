@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "proxy-harvest"
-version = "0.0.2"
+version = "0.0.3"
 description = "Harvest, probe and safely apply untrusted proxy subscriptions to mihomo"
 readme = "README.md"
 requires-python = ">=3.9"

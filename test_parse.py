@@ -1208,7 +1208,7 @@ class TestGeofiles(unittest.TestCase):
 
 
 class TestParserHardening(unittest.TestCase):
-    """v0.0.2 解析器边界用例：畸形 URI 不得抛异常，也不得产出必然加载失败的节点。"""
+    """v0.0.3 解析器边界用例：畸形 URI 不得抛异常，也不得产出必然加载失败的节点。"""
 
     def test_bad_ports_return_none(self):
         cases = {
@@ -2078,7 +2078,7 @@ class TestMockKernel(unittest.TestCase):
 
 
 class TestReleaseRegressions(unittest.TestCase):
-    """v0.0.2 定向回归。"""
+    """v0.0.3 定向回归。"""
 
     def setUp(self):
         self.tmp = tempfile.mkdtemp(prefix="ph-v033-")

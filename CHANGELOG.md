@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.3
+
+2026-11-20
+
+版本维护发版。相对 v0.0.2 无功能变更，统一版本号与分发物命名到 v0.0.3；另修复一处跨平台解析兼容问题。
+
+### 主要变化
+
+- 项目版本号升级到 `0.0.3`（`pyproject.toml`、`proxy_harvest.py`、README 与验证记录）。
+- 修复畸形方括号 URL 的解析在不同 Python 版本行为不一致的问题：`_urlparse` 现在主动校验 netloc 的方括号配对，不再依赖 `urlparse` 是否抛 `ValueError`。此前 3.10 某些补丁版会把 `vless://]bad[?a=1` 当成合法解析，导致 CI 上 3.9/3.10 的回归用例失败。
+- 分发物 `proxy-harvest-v0.0.3.patch` 与 `proxy-harvest-v0.0.3.zip` 按新版本号重新生成。
+
 ## v0.0.2
 
 2026-11-20

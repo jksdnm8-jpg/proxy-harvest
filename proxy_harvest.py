@@ -35,7 +35,7 @@
   130 用户中断
 """
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 import argparse
 import base64
@@ -452,10 +452,25 @@ def decode_body(text):
 
 
 def _urlparse(u):
-    """安全版 urlparse：畸形 IPv6 方括号等会抛 ValueError，这里统一返回 None。"""
+    """安全版 urlparse。
+
+    畸形 IPv6 方括号（如 ``]bad[``）在不同 CPython 版本上行为不一致：
+    3.9/3.13 会抛 ValueError，3.10 某些补丁版却照常解析并返回 query。
+    为保持跨版本一致，这里先主动校验 netloc 里的方括号是否成对且顺序正确，
+    再调用 urlparse；任何一步异常或畸形都统一返回 None。
+    """
     try:
+        # 取 netloc：scheme:// 之后、第一个 / ? # 之前。
+        rest = u.split("://", 1)[-1]
+        netloc = re.split(r"[/?#]", rest, 1)[0]
+        # IPv6 主机必须是一对匹配且顺序正确的方括号；其它情况一律视为畸形。
+        if "[" in netloc or "]" in netloc:
+            if netloc.count("[") != 1 or netloc.count("]") != 1:
+                return None
+            if netloc.index("[") > netloc.index("]"):
+                return None
         return urllib.parse.urlparse(u)
-    except ValueError:
+    except (ValueError, TypeError):
         return None
 
 
