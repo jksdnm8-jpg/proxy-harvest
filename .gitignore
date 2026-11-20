@@ -2,6 +2,7 @@
 history/
 backups/
 config/
+mihomo/
 .harvest-tmp/
 harvest.log
 *.log
@@ -14,6 +15,8 @@ config.json
 __pycache__/
 *.py[cod]
 *.egg-info/
+build/
+dist/
 .venv/
 venv/
 
@@ -28,3 +31,6 @@ desktop.ini
 *.gz
 *.tgz
 *.zip
+*.patch
+.harvest.lock
+*.log.*

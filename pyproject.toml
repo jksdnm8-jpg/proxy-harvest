@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proxy-harvest"
+version = "0.0.2"
+description = "Harvest, probe and safely apply untrusted proxy subscriptions to mihomo"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["PyYAML>=6.0,<7.0"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+proxy-harvest = "proxy_harvest:main"
+
+[tool.setuptools]
+py-modules = ["proxy_harvest", "configgen", "mock_mihomo", "compat_matrix"]
