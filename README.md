@@ -1,6 +1,6 @@
 # Proxy Harvest
 
-`v0.0.3` · 代理订阅抓取、测速与 mihomo 配置落地工具。
+`v0.0.4` · 代理订阅抓取、测速与 mihomo 配置落地工具。
 
 从订阅源抓取节点，用临时 mihomo 实例测速并记录结果；需要时生成分组订阅，或写入 mihomo 配置。
 默认只读，只有显式 `--apply` / `--cron` 才会改动配置。
@@ -25,7 +25,11 @@
 
 - Python 3.9+（推荐 3.10+）
 - `pyyaml>=6.0,<7.0`
-- [mihomo](https://github.com/MetaCubeX/mihomo)（Meta 内核，用于预检、测速与本地代理）
+- [mihomo](https://github.com/MetaCubeX/mihomo)（Meta 内核，用于预检、测速与本地代理）；**要求 >= v1.19.12**。
+  v1.19.11 及更早版本的 `rule-providers` 的 `file` 类型不校验路径，配合 `/configs` 写入可读取任意文件
+  （[CVE-2025-56499](https://nvd.nist.gov/vuln/detail/CVE-2025-56499)，CVSS 6.5，上游修复
+  [PR #2177](https://github.com/MetaCubeX/mihomo/pull/2177)）。本项目自身不生成 `rule-providers`，
+  `external-controller` 也只绑 `127.0.0.1`，但仍建议不要降级到受影响版本。
 - split 规则还需要 `geoip.dat` / `geosite.dat`（可选 `country.mmdb`）；来自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)，放到 `config/` 或与 `-d` 配置目录同级
 - `curl`（Windows 10/11 自带 `curl.exe`；Linux/macOS 通常已安装）
 - 国内环境需要 `gh-proxy.com` 可访问（脚本默认经它抓 GitHub 订阅）
@@ -201,7 +205,7 @@ python compat_matrix.py --mihomo mock_mihomo.py --only ss,vless --json-out compa
 矩阵用例：`ss` / `vmess` / `vless` / `trojan` / `hysteria2` / `tuic` / `anytls` /
 `dns-fake-ip` / `groups` / `listeners`。CI 使用 mock 内核生成 `compat.json`；真实内核矩阵可在本机用
 `compat_matrix.py` 生成，不随仓库提交。本机验证记录见
-[VALIDATION-v0.0.3.md](VALIDATION-v0.0.3.md)。
+[VALIDATION-v0.0.4.md](VALIDATION-v0.0.4.md)。
 
 ## 配置
 

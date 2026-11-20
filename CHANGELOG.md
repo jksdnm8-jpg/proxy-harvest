@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.0.4
+
+2026-11-20
+
+维护发版。相对 v0.0.3 无功能与代码逻辑变更，只调整 CI、依赖声明和分发物。
+
+### 主要变化
+
+- 项目版本号升级到 `0.0.4`（`pyproject.toml`、`proxy_harvest.py`、README 与验证记录）。
+- CI 测试矩阵改为 `3.10` / `3.13` / `3.14`。`ubuntu-latest` 已指向 Ubuntu 26.04，
+  而 `actions/python-versions` 不再为 26.04 提供 Python 3.9 构建，`setup-python` 会直接失败；
+  3.9 已 EOL，CI 最低版本提到 3.10。代码本身仍声明 `requires-python = ">=3.9"`，只是不再纳入 CI。
+- CI 里的 `actions/checkout`、`actions/setup-python`、`actions/upload-artifact` 升级到 v7（Node 24），
+  消除 `Node.js 20 is deprecated` 告警。
+- README 依赖一节写明 mihomo 需要 **>= v1.19.12**：更早版本的 `rule-providers` 在 `type: file`
+  分支不校验路径，配合 `PUT /configs` 与 `/logs` 的回显可读取任意文件
+  （CVE-2025-56499，CVSS 6.5，上游修复 PR #2177）。本项目自身不生成 `rule-providers`，
+  `external-controller` 也只绑 `127.0.0.1`，不受该漏洞影响；写进依赖只是避免被降级到受影响版本。
+- 分发物 `proxy-harvest-v0.0.4.patch` 与 `proxy-harvest-v0.0.4.zip` 按新版本号重新生成。
+
 ## v0.0.3
 
 2026-11-20

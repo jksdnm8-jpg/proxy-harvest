@@ -1,4 +1,4 @@
-# Proxy Harvest v0.0.3 真实 split / geo 复核记录
+# Proxy Harvest v0.0.4 真实 split / geo 复核记录
 
 - 日期：2026-11-20（Asia/Shanghai）
 - 结论：Windows 本机真实 mihomo 能加载完整 split 规则（GEOSITE / GEOIP）；临时实例、临时落地、死节点清理和分组订阅导出均通过真实内核复核。
